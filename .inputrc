@@ -1,0 +1,4 @@
+TAB: menu-complete
+"\C-[[A": history-search-backward
+"\C-[[B": history-search-forward
+set completion-ignore-case

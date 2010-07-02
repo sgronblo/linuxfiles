@@ -2,6 +2,9 @@
 
 #aliases
 alias ls='ls --color=auto'
+alias gs='git status'
+alias gd='git diff'
+alias gcv='git commit --verbose'
 alias ll='ls -l'
 alias la='ls -a'
 alias dir='ls'

@@ -5,6 +5,9 @@ alias ls='ls --color=auto'
 alias ll='ls -l'
 alias la='ls -a'
 alias dir='ls'
+alias gs='git status'
+alias gcv='git commit --verbose'
+alias gd='git diff'
 alias e=exit
 
 #change the prompt

@@ -16,7 +16,7 @@ function setPrompt {
     #local GREEN_FG="\[\033[32m\]"
     #local DEFAULT_FG="\033[39m\]"
     local GREEN_FG="$(tput setaf 2)"
-    local DEFAULT_FG="$(tput setaf 9)"
+    local DEFAULT_FG="$(tput sgr0)"
     local BLUE_FG="$(tput setaf 4)"
     PS1="${BLUE_FG}\w\n${DEFAULT_FG}[${GREEN_FG}\u${DEFAULT_FG}@${GREEN_FG}\h${DEFAULT_FG}]\n> "
 }

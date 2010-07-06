@@ -42,5 +42,6 @@ export LC_ALL="en_US.utf8"
 #ignore same inputs in history
 export HISTIGNORE="&"
 #add my dir of handy scripts to path
+export JAVA_HOME=/usr/lib/jvm/java-6-sun
 PATH=$PATH:~/scripts
 export PATH

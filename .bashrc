@@ -11,6 +11,8 @@ alias gd='git diff'
 alias tpj='tp -j'
 alias e=exit
 
+export GIT_PS1_SHOWDIRTYSTATE=1
+
 #change the prompt
 function setPrompt {
     #local GREEN_FG="\[\033[32m\]"
@@ -18,7 +20,8 @@ function setPrompt {
     local GREEN_FG="$(tput setaf 2)"
     local DEFAULT_FG="$(tput sgr0)"
     local BLUE_FG="$(tput setaf 4)"
-    PS1="${BLUE_FG}\w\n${DEFAULT_FG}[${GREEN_FG}\u${DEFAULT_FG}@${GREEN_FG}\h${DEFAULT_FG}]\n> "
+    local YELLOW_FG="$(tput setaf 3)"
+    PS1="${BLUE_FG}\w\n${DEFAULT_FG}[${GREEN_FG}\u${DEFAULT_FG}@${GREEN_FG}\h${DEFAULT_FG} ${YELLOW_FG}$(__git_ps1)${DEFAULT_FG}]\n> "
 }
 setPrompt
 

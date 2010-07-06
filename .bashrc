@@ -22,7 +22,7 @@ function setPrompt {
 }
 setPrompt
 
-source linuxfiles/tp_command
+source ~/linuxfiles/tp_command
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -35,8 +35,6 @@ export TERM=xterm-256color
 export LC_ALL="en_US.utf8"
 #ignore same inputs in history
 export HISTIGNORE="&"
-#classpath for java
-export CLASSPATH=~/dst07
 #add my dir of handy scripts to path
 PATH=$PATH:~/scripts
 export PATH

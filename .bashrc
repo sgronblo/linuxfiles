@@ -8,6 +8,7 @@ alias dir='ls'
 alias gs='git status'
 alias gcv='git commit --verbose'
 alias gd='git diff'
+alias tpj='tp -j'
 alias e=exit
 
 #change the prompt
@@ -20,6 +21,8 @@ function setPrompt {
     PS1="${BLUE_FG}\w\n${DEFAULT_FG}[${GREEN_FG}\u${DEFAULT_FG}@${GREEN_FG}\h${DEFAULT_FG}]\n> "
 }
 setPrompt
+
+source linuxfiles/tp_command
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile

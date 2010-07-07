@@ -2,6 +2,7 @@
 let Tlist_WinWidth = 40
 let Tlist_Sort_Type = "name"
 let g:tex_flavor = "latex"
+let loaded_matchparen = 1
 
 set directory=~/vimswaps
 set grepprg=grep\ -nH\ $*\ /dev/null
@@ -20,6 +21,7 @@ set whichwrap=h,l,[,],~
 set wildmenu
 set printdevice=black
 set hidden
+set hlsearch
 
 if has("gui_running")
     colorscheme django

@@ -20,6 +20,7 @@ set whichwrap=h,l,[,],~
 set wildmenu
 set printdevice=black
 set hidden
+set hlsearch
 
 if has("gui_running")
     colorscheme django

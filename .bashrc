@@ -45,3 +45,6 @@ export HISTIGNORE="&"
 export JAVA_HOME=/usr/lib/jvm/java-6-sun
 PATH=$PATH:~/scripts
 export PATH
+
+# some silly row for RVM
+[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm

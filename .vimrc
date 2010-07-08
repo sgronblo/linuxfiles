@@ -21,6 +21,7 @@ set wildmenu
 set printdevice=black
 set hidden
 set hlsearch
+set autoread
 
 if has("gui_running")
     colorscheme django

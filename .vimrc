@@ -35,7 +35,7 @@ noremap j gj
 noremap k gk
 noremap <Up> gk
 noremap <Down> gj
-noremap <F1> :call ToggleCharInString('formatoptions','a')<CR>
+noremap <F1> :Rake
 noremap <silent> <F2> :NERDTreeToggle<CR>
 nnoremap <silent> <C-h> :bprevious<CR>
 nnoremap <silent> <C-l> :bnext<CR>
@@ -44,7 +44,9 @@ nnoremap <C-pageup> <C-w>W
 nnoremap <silent> <F8> :TlistToggle<CR>
 nnoremap <BS> hx
 nnoremap <Space> i<Space><Esc>
-"nnoremap <Enter> i<Enter><Esc>
+" mappings to search for the highlighted word when pressing * or # in visual mode
+vnoremap * <Esc>/<c-r>=escape(@*, '\/.*$^~[]')<CR><CR>
+vnoremap # <Esc>?<c-r>=escape(@*, '\/.*$^~[]')<CR><CR>
 
 " Insert <Tab> or complete identifier
 " if the cursor is after a keyword character

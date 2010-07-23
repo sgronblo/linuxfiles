@@ -43,6 +43,8 @@ hi Cursor	gui=NONE guifg=#000000 guibg=#00FF00	cterm=NONE ctermfg=black ctermbg=
 hi CursorIM	gui=NONE guifg=fg guibg=#FF0000		cterm=NONE ctermfg=black ctermbg=red
 hi CursorLine	gui=NONE guifg=NONE guibg=#001220
 hi CursorColumn	gui=NONE guifg=NONE guibg=#001630
+hi Pmenu	gui=NONE guifg=#8A2BE2 guibg=#A4D3EE
+hi PmenuSel	gui=NONE guifg=#8A2BE2 guibg=#00FF7F
 
 """"""\ Syntax highlighting groups \""""""
 hi Normal	gui=NONE guifg=#E6E6FA guibg=black	cterm=NONE ctermfg=white ctermbg=black

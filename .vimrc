@@ -62,7 +62,7 @@ inoremap <Tab> <C-R>=CleverTab()<CR>
 filetype plugin indent on
 
 " highlight whitespace at end of lines as Error
-match Error /\s\+$/
+match Error /\S\+\zs\s\+$/
 autocmd BufReadPost quickfix set cursorline
 autocmd FileType ruby set sw=2
 autocmd FileType tex set tw=70

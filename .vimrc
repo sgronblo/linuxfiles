@@ -16,6 +16,7 @@ set shiftwidth=4
 set smartcase
 set softtabstop=4
 set tabstop=8
+set scrolloff=3
 set whichwrap=h,l,[,],~
 set wildmenu
 set printdevice=black

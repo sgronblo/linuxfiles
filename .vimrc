@@ -30,6 +30,9 @@ else
     colorscheme desert256
 endif
 
+" Show the syntastic status flag in status line
+set statusline=%<%f\ %#errormsg#%{SyntasticStatuslineFlag()}%*%h%m%r%=%-14.(%l,%c%V%)\ %P
+
 " Mappings
 noremap <Space> <PageDown>
 noremap j gj

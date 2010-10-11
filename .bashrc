@@ -46,5 +46,9 @@ export JAVA_HOME=/usr/lib/jvm/java-6-sun
 PATH=$PATH:~/scripts
 export PATH
 
-# some silly row for RVM
-[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+# source the right rvm function creation script based on rvm being installed system-wide or user-wide
+if [[ -s /usr/local/lib/rvm ]]; then
+    && source /usr/local/lib/rvm
+else if [[ -s /usr/local/lib/rvm ]]; then
+    source /usr/local/lib/rvm
+fi

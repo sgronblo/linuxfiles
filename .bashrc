@@ -12,6 +12,7 @@ alias gcv='git commit --verbose'
 alias gd='git diff'
 alias tpj='tp -j'
 alias e=exit
+alias findfile='find . -iname'
 
 export GIT_PS1_SHOWDIRTYSTATE=1
 

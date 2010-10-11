@@ -23,11 +23,7 @@ set hidden
 set hlsearch
 set autoread
 
-if has("gui_running")
-    colorscheme django
-else
-    colorscheme desert256
-endif
+colorscheme railscasts
 
 " Mappings
 noremap <Space> <PageDown>

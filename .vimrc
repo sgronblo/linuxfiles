@@ -24,11 +24,7 @@ set hidden
 set hlsearch
 set autoread
 
-if has("gui_running")
-    colorscheme django
-else
-    colorscheme wombat
-endif
+colorscheme wombat
 
 " Show the syntastic status flag in status line
 set statusline=%<%f\ %#errormsg#%{SyntasticStatuslineFlag()}%*%h%m%r%=%-14.(%l,%c%V%)\ %P

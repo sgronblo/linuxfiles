@@ -49,7 +49,7 @@ export PATH
 
 # source the right rvm function creation script based on rvm being installed system-wide or user-wide
 if [[ -s /usr/local/lib/rvm ]]; then
-    && source /usr/local/lib/rvm
+    source /usr/local/lib/rvm
 else if [[ -s /usr/local/lib/rvm ]]; then
     source /usr/local/lib/rvm
 fi

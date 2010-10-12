@@ -27,7 +27,7 @@ set autoread
 if has("gui_running")
     colorscheme django
 else
-    colorscheme desert256
+    colorscheme wombat
 endif
 
 " Show the syntastic status flag in status line

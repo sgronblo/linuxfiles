@@ -19,6 +19,8 @@ set softtabstop=4
 set tabstop=8
 set scrolloff=3
 set whichwrap=h,l,[,],~
+"enable mouse to be used in all modes
+set mouse=a
 set wildmenu
 set printdevice=black
 set hidden

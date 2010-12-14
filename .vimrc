@@ -49,8 +49,15 @@ vnoremap # <Esc>?<c-r>=escape(@*, '\/.*$^~[]')<CR><CR>
 
 filetype plugin indent on
 
-" highlight whitespace at end of lines as Error
-match Error /\S\+\zs\s\+$/
+" Highlight EOL whitespace, stolen from https://github.com/bronson/vim-trailing-whitespace
+" http://vim.wikia.com/wiki/Highlight_unwanted_spaces
+highlight ExtraWhitespace ctermbg=darkred guibg=#382424
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+" the above flashes annoyingly while typing, be calmer in insert mode
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+
 autocmd BufReadPost quickfix set cursorline
 autocmd FileType ruby set sw=2
 autocmd FileType tex set tw=70

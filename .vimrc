@@ -42,7 +42,6 @@ nnoremap <silent> <C-l> :bnext<CR>
 nnoremap <C-pagedown> <C-w>w
 nnoremap <C-pageup> <C-w>W
 nnoremap <silent> <F8> :TlistToggle<CR>
-nnoremap <BS> hx
 nnoremap <Space> i<Space><Esc>
 " mappings to search for the highlighted word when pressing * or # in visual mode
 vnoremap * <Esc>/<c-r>=escape(@*, '\/.*$^~[]')<CR><CR>

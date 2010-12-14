@@ -47,16 +47,6 @@ nnoremap <Space> i<Space><Esc>
 vnoremap * <Esc>/<c-r>=escape(@*, '\/.*$^~[]')<CR><CR>
 vnoremap # <Esc>?<c-r>=escape(@*, '\/.*$^~[]')<CR><CR>
 
-" Insert <Tab> or complete identifier
-" if the cursor is after a keyword character
-function! CleverTab()
-   if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
-      return "\<Tab>"
-   else
-      return "\<C-N>"
-endfunction
-inoremap <Tab> <C-R>=CleverTab()<CR>
-
 filetype plugin indent on
 
 " highlight whitespace at end of lines as Error

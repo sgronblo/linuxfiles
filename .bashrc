@@ -11,7 +11,6 @@ alias gsr='git svn rebase'
 alias gcv='git commit --verbose'
 alias gd='git diff --no-prefix'
 alias tpj='tp -j'
-alias e=exit
 alias findfile='find . -iname'
 
 export GIT_PS1_SHOWDIRTYSTATE=1

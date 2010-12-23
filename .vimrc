@@ -17,6 +17,7 @@ set shiftwidth=4
 set smartcase
 set softtabstop=4
 set tabstop=8
+set scrolloff=3
 set whichwrap=h,l,[,],~
 set wildmenu
 set printdevice=black
@@ -24,11 +25,10 @@ set hidden
 set hlsearch
 set autoread
 
-if has("gui_running")
-    colorscheme django
-else
-    colorscheme desert256
-endif
+colorscheme wombat
+
+" Show the syntastic status flag in status line
+set statusline=%<%f\ %#errormsg#%{SyntasticStatuslineFlag()}%*%h%m%r%=%-14.(%l,%c%V%)\ %P
 
 " Mappings
 noremap <Space> <PageDown>
@@ -43,26 +43,22 @@ nnoremap <silent> <C-l> :bnext<CR>
 nnoremap <C-pagedown> <C-w>w
 nnoremap <C-pageup> <C-w>W
 nnoremap <silent> <F8> :TlistToggle<CR>
-nnoremap <BS> hx
 nnoremap <Space> i<Space><Esc>
 " mappings to search for the highlighted word when pressing * or # in visual mode
 vnoremap * <Esc>/<c-r>=escape(@*, '\/.*$^~[]')<CR><CR>
 vnoremap # <Esc>?<c-r>=escape(@*, '\/.*$^~[]')<CR><CR>
 
-" Insert <Tab> or complete identifier
-" if the cursor is after a keyword character
-function! CleverTab()
-   if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
-      return "\<Tab>"
-   else
-      return "\<C-N>"
-endfunction
-inoremap <Tab> <C-R>=CleverTab()<CR>
-
 filetype plugin indent on
 
-" highlight whitespace at end of lines as Error
-match Error /\s\+$/
+" Highlight EOL whitespace, stolen from https://github.com/bronson/vim-trailing-whitespace
+" http://vim.wikia.com/wiki/Highlight_unwanted_spaces
+highlight ExtraWhitespace ctermbg=darkred guibg=#382424
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+" the above flashes annoyingly while typing, be calmer in insert mode
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+
 autocmd BufReadPost quickfix set cursorline
 autocmd FileType ruby set sw=2
 autocmd FileType tex set tw=70

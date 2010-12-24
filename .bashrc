@@ -43,7 +43,7 @@ export TERM=xterm-256color
 #change locale to sv_FI.utf8
 export LC_ALL="en_US.utf8"
 #ignore same inputs in history
-export HISTIGNORE="&"
+export HISTCONTROL="ignoreboth"
 #add my dir of handy scripts to path
 export JAVA_HOME=/usr/lib/jvm/java-6-sun
 PATH=$PATH:~/scripts

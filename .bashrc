@@ -19,7 +19,7 @@ alias findfile='find . -iname'
 export GIT_PS1_SHOWDIRTYSTATE=1
 
 #change the prompt
-function setPrompt {
+setPrompt() {
     #local GREEN_FG="\[\033[32m\]"
     #local DEFAULT_FG="\033[39m\]"
     local GREEN_FG="$(tput setaf 2)"

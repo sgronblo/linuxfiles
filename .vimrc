@@ -29,6 +29,10 @@ set autoread
 
 colorscheme wombat
 
+if &diff
+    colorscheme molokai
+endif
+
 " Show the syntastic status flag in status line
 set statusline=%<%f\ %#errormsg#%{SyntasticStatuslineFlag()}%*%h%m%r%=%-14.(%l,%c%V%)\ %P
 

@@ -50,7 +50,7 @@ hi VertSplit	ctermfg=white   ctermbg=darkblue
 hi Folded		ctermfg=grey ctermbg=darkblue
 hi FoldColumn	ctermfg=darkred ctermbg=lightcyan
 hi IncSearch	ctermfg=yellow ctermbg=darkblue
-hi LineNr		ctermfg=lightyellow ctermbg=darkblue
+hi LineNr		ctermfg=LightYellow ctermbg=darkblue
 hi ModeMsg		ctermfg=white   ctermbg=darkblue
 hi MoreMsg		ctermfg=white   ctermbg=darkblue
 hi NonText		ctermfg=white   ctermbg=lightblue

@@ -2,6 +2,9 @@
 
 #aliases
 alias ls='ls --color=auto'
+alias gs='git status'
+alias gd='git diff'
+alias gcv='git commit --verbose'
 alias ll='ls -l'
 alias la='ls -a'
 alias dir='ls'
@@ -16,7 +19,7 @@ alias findfile='find . -iname'
 export GIT_PS1_SHOWDIRTYSTATE=1
 
 #change the prompt
-function setPrompt {
+setPrompt() {
     #local GREEN_FG="\[\033[32m\]"
     #local DEFAULT_FG="\033[39m\]"
     local GREEN_FG="$(tput setaf 2)"
@@ -40,7 +43,7 @@ export TERM=xterm-256color
 #change locale to sv_FI.utf8
 export LC_ALL="en_US.utf8"
 #ignore same inputs in history
-export HISTIGNORE="&"
+export HISTCONTROL="ignoreboth"
 #add my dir of handy scripts to path
 export JAVA_HOME=/usr/lib/jvm/java-6-sun
 PATH=$PATH:~/scripts:~/android-sdk-linux_x86/tools/

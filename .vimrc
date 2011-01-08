@@ -2,6 +2,7 @@
 let Tlist_WinWidth = 40
 let Tlist_Sort_Type = "name"
 let g:tex_flavor = "latex"
+let loaded_matchparen = 1
 
 set directory=~/vimswaps
 set grepprg=grep\ -nH\ $*\ /dev/null
@@ -18,6 +19,8 @@ set softtabstop=4
 set tabstop=8
 set scrolloff=3
 set whichwrap=h,l,[,],~
+"enable mouse to be used in all modes
+set mouse=a
 set wildmenu
 set printdevice=black
 set hidden
@@ -25,6 +28,10 @@ set hlsearch
 set autoread
 
 colorscheme wombat
+
+if &diff
+    colorscheme molokai
+endif
 
 " Show the syntastic status flag in status line
 set statusline=%<%f\ %#errormsg#%{SyntasticStatuslineFlag()}%*%h%m%r%=%-14.(%l,%c%V%)\ %P

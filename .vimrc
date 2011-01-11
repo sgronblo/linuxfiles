@@ -1,4 +1,8 @@
 " Settings
+
+filetype off
+call pathogen#runtime_append_all_bundles()
+
 let Tlist_WinWidth = 40
 let Tlist_Sort_Type = "name"
 let g:tex_flavor = "latex"

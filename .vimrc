@@ -73,6 +73,7 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 
 autocmd BufReadPost quickfix set cursorline
 autocmd FileType ruby set sw=2
+autocmd FileType php set expandtab
 autocmd FileType tex set tw=70
 autocmd FileType python set tw=110
 autocmd FileType python source ~/.vim/extraplugin/python.vim

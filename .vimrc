@@ -6,6 +6,7 @@ call pathogen#runtime_append_all_bundles()
 let Tlist_WinWidth = 40
 let Tlist_Sort_Type = "name"
 let g:tex_flavor = "latex"
+let g:ackprg = "ack-grep -H --nocolor --nogroup --column"
 let loaded_matchparen = 1
 
 set directory=~/vimswaps
@@ -31,7 +32,7 @@ set hidden
 set hlsearch
 set autoread
 
-colorscheme wombat
+colorscheme gardener
 
 if &diff
     colorscheme molokai

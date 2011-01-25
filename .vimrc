@@ -31,6 +31,7 @@ set printdevice=black
 set hidden
 set hlsearch
 set autoread
+set listchars=eol:$,nbsp:␣
 
 colorscheme gardener
 

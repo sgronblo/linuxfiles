@@ -31,7 +31,8 @@ set printdevice=black
 set hidden
 set hlsearch
 set autoread
-set listchars=tab:⇥\ ,trail:·,extends:⋯,precedes:⋯,eol:⏎,nbsp:␣
+set list
+set listchars=tab:▷\ ,trail:·,extends:⋯,precedes:⋯,nbsp:␣
 
 colorscheme gardener
 

@@ -43,7 +43,7 @@ export TERM=xterm-256color
 #change locale to sv_FI.utf8
 export LC_ALL="en_US.utf8"
 #ignore same inputs in history
-export HISTCONTROL="ignoreboth"
+export HISTCONTROL="ignorespace:erasedups"
 export HISTSIZE=2000
 shopt -s histappend
 #add my dir of handy scripts to path

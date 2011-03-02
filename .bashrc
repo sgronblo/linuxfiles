@@ -44,6 +44,8 @@ export TERM=xterm-256color
 export LC_ALL="en_US.utf8"
 #ignore same inputs in history
 export HISTCONTROL="ignoreboth"
+export HISTSIZE=2000
+shopt -s histappend
 #add my dir of handy scripts to path
 export JAVA_HOME=/usr/lib/jvm/java-6-sun
 PATH=$PATH:~/linuxfiles/scripts:~/android-sdk-linux_x86/tools/

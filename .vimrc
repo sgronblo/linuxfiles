@@ -8,6 +8,7 @@ let Tlist_Sort_Type = "name"
 let g:tex_flavor = "latex"
 let g:ackprg = "ack-grep -H --nocolor --nogroup --column"
 let loaded_matchparen = 1
+let g:pyindent_open_paren = '&sw'
 
 set directory=~/vimswaps
 set grepprg=grep\ -nH\ $*\ /dev/null

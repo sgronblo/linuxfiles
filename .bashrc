@@ -46,7 +46,7 @@ export LC_ALL="en_US.utf8"
 export HISTCONTROL="ignoreboth"
 #add my dir of handy scripts to path
 export JAVA_HOME=/usr/lib/jvm/java-6-sun
-PATH=$PATH:~/scripts:~/android-sdk-linux_x86/tools/
+PATH=$PATH:~/linuxfiles/scripts:~/android-sdk-linux_x86/tools/
 export PATH
 
 # source the right rvm function creation script based on rvm being installed system-wide or user-wide

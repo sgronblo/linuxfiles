@@ -33,6 +33,7 @@ set hidden
 set hlsearch
 set autoread
 set list
+set expandtab
 set listchars=tab:▷\ ,trail:·,extends:⋯,precedes:⋯,nbsp:␣
 
 colorscheme gardener

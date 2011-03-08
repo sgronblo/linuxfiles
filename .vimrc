@@ -59,6 +59,9 @@ nnoremap <C-pagedown> <C-w>w
 nnoremap <C-pageup> <C-w>W
 nnoremap <silent> <F8> :TlistToggle<CR>
 nnoremap <Space> i<Space><Esc>
+" just initialize a search for word under cursor without jumping to next
+" occurence
+nnoremap * :let @/ = "\\<<C-R><C-W>\\>"<CR>
 " mappings to search for the highlighted word when pressing * or # in visual mode
 vnoremap * <Esc>/<c-r>=escape(@*, '\/.*$^~[]')<CR><CR>
 vnoremap # <Esc>?<c-r>=escape(@*, '\/.*$^~[]')<CR><CR>

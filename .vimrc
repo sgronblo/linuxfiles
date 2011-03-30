@@ -9,6 +9,7 @@ let g:tex_flavor = "latex"
 let g:ackprg = "ack-grep -H --nocolor --nogroup --column"
 let loaded_matchparen = 1
 let g:pyindent_open_paren = '&sw'
+let g:syntastic_enable_signs = 1
 
 set directory=~/vimswaps
 set grepprg=grep\ -nH\ $*\ /dev/null

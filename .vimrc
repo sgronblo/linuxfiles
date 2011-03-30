@@ -23,7 +23,7 @@ set nojoinspaces
 set shiftwidth=4
 set smartcase
 set softtabstop=4
-set tabstop=8
+set tabstop=4
 set scrolloff=3
 set whichwrap=h,l,[,],~
 "enable mouse to be used in all modes

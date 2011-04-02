@@ -9,6 +9,7 @@ let g:tex_flavor = "latex"
 let g:ackprg = "ack-grep -H --nocolor --nogroup --column"
 let loaded_matchparen = 1
 let g:pyindent_open_paren = '&sw'
+let g:syntastic_enable_signs = 1
 
 set directory=~/vimswaps
 set grepprg=grep\ -nH\ $*\ /dev/null
@@ -22,7 +23,7 @@ set nojoinspaces
 set shiftwidth=4
 set smartcase
 set softtabstop=4
-set tabstop=8
+set tabstop=4
 set scrolloff=3
 set whichwrap=h,l,[,],~
 "enable mouse to be used in all modes

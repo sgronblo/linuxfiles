@@ -51,6 +51,11 @@ export JAVA_HOME=/usr/lib/jvm/java-6-sun
 PATH=$PATH:~/linuxfiles/scripts:~/android-sdk-linux_x86/tools/
 export PATH
 
+if [[ -s /usr/local/bin/virtualenvwrapper.sh ]]; then
+    source /usr/local/bin/virtualenvwrapper.sh
+    export WORKON_HOME=~/virtualenvs
+fi
+
 # source the right rvm function creation script based on rvm being installed system-wide or user-wide
 if [[ -s /usr/local/lib/rvm ]]; then
     source /usr/local/lib/rvm

@@ -57,8 +57,10 @@ noremap <F1> :Rake<CR>
 noremap <silent> <F2> :NERDTreeToggle<CR>
 nnoremap <silent> <C-h> :bprevious<CR>
 nnoremap <silent> <C-l> :bnext<CR>
-nnoremap <C-pagedown> <C-w>w
-nnoremap <C-pageup> <C-w>W
+nnoremap <C-Left> <C-w><Left>
+nnoremap <C-Right> <C-w><Right>
+nnoremap <C-Up> <C-w><Up>
+nnoremap <C-Down> <C-w><Down>
 nnoremap <silent> <F8> :TlistToggle<CR>
 nnoremap <Space> i<Space><Esc>
 " just initialize a search for word under cursor without jumping to next

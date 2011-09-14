@@ -70,6 +70,7 @@ vnoremap * <Esc>/<c-r>=escape(@*, '\/.*$^~[]')<CR><CR>
 vnoremap # <Esc>?<c-r>=escape(@*, '\/.*$^~[]')<CR><CR>
 
 filetype plugin indent on
+syntax on
 
 " Highlight EOL whitespace, stolen from https://github.com/bronson/vim-trailing-whitespace
 " http://vim.wikia.com/wiki/Highlight_unwanted_spaces

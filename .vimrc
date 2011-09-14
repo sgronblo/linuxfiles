@@ -36,6 +36,7 @@ set autoread
 set list
 set expandtab
 set listchars=tab:▷\ ,trail:·,extends:⋯,precedes:⋯,nbsp:␣
+set backspace=eol,indent,start
 
 colorscheme gardener
 
@@ -58,8 +59,8 @@ nnoremap <silent> <C-h> :bprevious<CR>
 nnoremap <silent> <C-l> :bnext<CR>
 nnoremap <C-Left> <C-w><Left>
 nnoremap <C-Right> <C-w><Right>
-nnoremap <C-Down> <C-w><Down>
 nnoremap <C-Up> <C-w><Up>
+nnoremap <C-Down> <C-w><Down>
 nnoremap <silent> <F8> :TlistToggle<CR>
 nnoremap <Space> i<Space><Esc>
 " just initialize a search for word under cursor without jumping to next

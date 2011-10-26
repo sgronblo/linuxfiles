@@ -41,6 +41,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 export TERM=xterm-256color
+export GREP_OPTIONS="--color=auto"
 #change locale to sv_FI.utf8
 export LC_ALL="en_US.utf8"
 #ignore same inputs in history

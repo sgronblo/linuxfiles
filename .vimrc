@@ -11,7 +11,6 @@ let loaded_matchparen = 1
 let g:pyindent_open_paren = '&sw'
 let g:syntastic_enable_signs = 1
 
-set directory=~/vimswaps
 set grepprg=grep\ -nH\ $*\ /dev/null
 set guifont=Andale\ Mono\ 12
 set guioptions-=T

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# = USAGE
+#  git submodule reset
+
+function submodule_paths {
+  ref=$(git ls-files --error-unmatch --stage -- . | grep "^160000" | awk '{print $4}' | uniq)
+  echo "${ref}"
+}
+
+function reset_submodule {
+  git add $1
+  git reset HEAD $1
+}
+
+for path in $(submodule_paths)
+do
+    reset_submodule $path
+done

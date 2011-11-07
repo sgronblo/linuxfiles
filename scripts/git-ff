@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# git fast forward
+# filename: git-ff
+# = USAGE
+#  git ff
+#
+# = INSTALL
+#  curl http://github.com/evaryont/gist/raw/master/gist.rb > git-ff &&
+#  chmod 755 git-ff &&
+#  mv git-ff /usr/local/bin/git-ff
+
+function git_branch_name {
+  ref=$(git symbolic-ref HEAD 2> /dev/null)
+  echo "${ref#refs/heads/}"
+}
+
+git merge origin/$(git_branch_name)

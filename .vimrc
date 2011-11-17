@@ -1,7 +1,7 @@
 " Settings
 
 filetype off
-call pathogen#runtime_append_all_bundles()
+call pathogen#infect()
 
 let Tlist_WinWidth = 40
 let Tlist_Sort_Type = "name"

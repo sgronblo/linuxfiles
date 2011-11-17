@@ -46,10 +46,8 @@ endif
 " Show the syntastic status flag in status line
 set statusline=%<%f\ %#errormsg#%{SyntasticStatuslineFlag()}%*%h%m%r%=%-14.(%l,%c%V%)\ %P
 
+command W w
 " Mappings
-noremap <Space> <PageDown>
-"noremap j gj
-"noremap k gk
 noremap <Up> gk
 noremap <Down> gj
 noremap <F1> :Rake<CR>

@@ -1,7 +1,7 @@
 " Settings
 
 filetype off
-call pathogen#runtime_append_all_bundles()
+call pathogen#infect()
 
 let Tlist_WinWidth = 40
 let Tlist_Sort_Type = "name"
@@ -11,7 +11,6 @@ let loaded_matchparen = 1
 let g:pyindent_open_paren = '&sw'
 let g:syntastic_enable_signs = 1
 
-set directory=~/vimswaps
 set grepprg=grep\ -nH\ $*\ /dev/null
 set guifont=Andale\ Mono\ 12
 set guioptions-=T
@@ -47,10 +46,8 @@ endif
 " Show the syntastic status flag in status line
 set statusline=%<%f\ %#errormsg#%{SyntasticStatuslineFlag()}%*%h%m%r%=%-14.(%l,%c%V%)\ %P
 
+command W w
 " Mappings
-noremap <Space> <PageDown>
-"noremap j gj
-"noremap k gk
 noremap <Up> gk
 noremap <Down> gj
 noremap <F1> :Rake<CR>
@@ -84,6 +81,7 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 
 autocmd BufReadPost quickfix set cursorline
 autocmd FileType ruby set sw=2
+autocmd FileType javascript iabbr $# $('#
 autocmd FileType php set expandtab
 autocmd FileType tex set tw=70
 autocmd FileType python set tw=110

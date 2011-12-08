@@ -2,7 +2,7 @@
 
 #aliases
 alias ls='ls --color=auto'
-alias fg='find | grep'
+alias fig='find | grep'
 alias gs='git status'
 alias gsu='git submodule update'
 alias gd='git diff'

@@ -45,7 +45,7 @@ if &diff
 endif
 
 " Show the syntastic status flag in status line
-set statusline=%<%f\ %#errormsg#%{SyntasticStatuslineFlag()}%*%h%m%r%=%-14.(%l,%c%V%)\ %P
+set statusline=%<%f\ %#errormsg#%{SyntasticStatuslineFlag()}%*%{fugitive#statusline()}%h%m%r%=%-14.(%l,%c%V%)\ %P
 
 command W w
 " Mappings

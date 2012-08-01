@@ -88,6 +88,7 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 
 autocmd BufReadPost quickfix set cursorline
+autocmd BufReadPost psql.edit.* set filetype=sql
 autocmd FileType ruby set sw=2
 autocmd FileType javascript iabbr $# $('#
 autocmd FileType php set expandtab

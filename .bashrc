@@ -1,8 +1,16 @@
 [ -z "$PS1" ] && return
 
+on_osx() {
+    [[ $(uname -s) = 'Darwin' ]]
+}
+
+# Source git completion manually if we are on OS X
+if [ -f /usr/local/git/contrib/completion/git-completion.bash ] && on_osx ; then
+    source /usr/local/git/contrib/completion/git-completion.bash
+fi
+
 #aliases
-alias ls='ls --color=auto'
-alias fig='find | grep'
+alias fig='find . | grep'
 alias gs='git status'
 alias gsu='git submodule update'
 alias gd='git diff'
@@ -17,8 +25,15 @@ alias gcv='git commit --verbose'
 alias gd='git diff --no-prefix'
 alias tpj='tp -j'
 alias findfile='find . -iname'
+alias clj='rlwrap java -cp /Users/sam/projects/clojure/clojure-1.4.0-master-SNAPSHOT.jar clojure.main'
 
 export GIT_PS1_SHOWDIRTYSTATE=1
+export CLICOLOR=1
+
+# Source OS X-specific aliases/environment variables
+if [ -f ~/linuxfiles/osx_config.sh ] && on_osx ; then
+    source ~/linuxfiles/osx_config.sh
+fi
 
 #change the prompt
 setPrompt() {
@@ -39,19 +54,26 @@ source ~/linuxfiles/mvn-color-function.sh
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+    source /etc/bash_completion
 fi
 export TERM=xterm-256color
 export GREP_OPTIONS="--color=auto"
 #change locale to sv_FI.utf8
-export LC_ALL="en_US.utf8"
+if on_osx; then
+    export LC_ALL="en_US.UTF-8"
+else
+    export LC_ALL="en_US.utf8"
+fi
 #ignore same inputs in history
 export HISTCONTROL="ignorespace:erasedups"
 export HISTSIZE=2000
 shopt -s histappend
 #add my dir of handy scripts to path
 export JAVA_HOME=/usr/lib/jvm/java-6-sun
-PATH=$PATH:~/linuxfiles/scripts:~/android-sdk-linux_x86/tools/
+PATH=$PATH:~/linuxfiles/scripts:~/android-sdk-linux_x86/tools
+if on_osx ; then
+    PATH=/usr/local/bin:$PATH
+fi
 export PATH
 
 if [[ -s /usr/local/bin/virtualenvwrapper.sh ]]; then

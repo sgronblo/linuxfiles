@@ -58,7 +58,12 @@ endif
 " Show the syntastic status flag in status line
 set statusline=%<%f\ %#errormsg#%{SyntasticStatuslineFlag()}%*%{fugitive#statusline()}%h%m%r%=%-14.(%l,%c%V%)\ %P
 
+" Commands
 command W w
+command PhpTags !ctags -R --languages=php --php-kinds=cifd .
+command CamelCase :call feedkeys("viw:s/\\v\\%V(\\b|_)([a-z])/\\u\\2/g\<CR>")
+command SnakeCase :call feedkeys("viw:s/\\%V[A-Z]\\%V/_\\l\\0/g\<CR>")
+
 " Mappings
 noremap <Up> gk
 noremap <Down> gj

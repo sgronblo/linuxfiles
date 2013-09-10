@@ -10,7 +10,13 @@ runtime bundles.vim
 let Tlist_WinWidth = 40
 let Tlist_Sort_Type = "name"
 let g:tex_flavor = "latex"
-let g:ackprg = "ack-grep -H --nocolor --nogroup --column"
+if executable('ag')
+  let g:ackprg = "ack -H --nocolor --nogroup --column"
+elseif executable('ack-grep')
+  let g:ackprg = "ack-grep -H --nocolor --nogroup --column"
+elseif executable('ack')
+  let g:ackprg = "ack -H --nocolor --nogroup --column"
+endif
 let loaded_matchparen = 1
 let g:pyindent_open_paren = '&sw'
 let g:syntastic_enable_signs = 1

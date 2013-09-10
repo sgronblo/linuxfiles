@@ -1,1 +1,5 @@
 .vim/.netrwhist
+.ackrc
+tags
+*.swp
+*.swo

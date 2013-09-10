@@ -68,7 +68,6 @@ command SnakeCase :call feedkeys("viw:s/\\%V[A-Z]\\%V/_\\l\\0/g\<CR>")
 noremap <Up> gk
 noremap <Down> gj
 noremap <F1> :Rake<CR>
-noremap <silent> <F2> :NERDTreeToggle<CR>
 nnoremap <silent> <C-h> :bprevious<CR>
 nnoremap <silent> <C-l> :bnext<CR>
 if has('mac')

@@ -78,6 +78,7 @@ if on_osx ; then
     PATH=/usr/local/bin:$PATH
 fi
 export PATH
+export ACKRC=.ackrc
 
 if [[ -s /usr/local/bin/virtualenvwrapper.sh ]]; then
     source /usr/local/bin/virtualenvwrapper.sh

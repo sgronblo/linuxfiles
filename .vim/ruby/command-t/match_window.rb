@@ -1,4 +1,4 @@
-# Copyright 2010 Wincent Colaiuta. All rights reserved.
+# Copyright 2010-2012 Wincent Colaiuta. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -26,18 +26,24 @@ require 'command-t/settings'
 
 module CommandT
   class MatchWindow
-    @@selection_marker  = '> '
-    @@marker_length     = @@selection_marker.length
-    @@unselected_marker = ' ' * @@marker_length
+    SELECTION_MARKER  = '> '
+    MARKER_LENGTH     = SELECTION_MARKER.length
+    UNSELECTED_MARKER = ' ' * MARKER_LENGTH
+    MH_START          = '<commandt>'
+    MH_END            = '</commandt>'
+    @@buffer          = nil
 
     def initialize options = {}
       @prompt = options[:prompt]
+      @reverse_list = options[:match_window_reverse]
+      @min_height = options[:min_height]
 
       # save existing window dimensions so we can restore them later
       @windows = []
       (0..(::VIM::Window.count - 1)).each do |i|
-        window = OpenStruct.new :index => i, :height => ::VIM::Window[i].height
-        @windows << window
+        @windows << OpenStruct.new(:index   => i,
+                                   :height  => ::VIM::Window[i].height,
+                                   :width   => ::VIM::Window[i].width)
       end
 
       # global settings (must manually save and restore)
@@ -52,34 +58,60 @@ module CommandT
       ::VIM::set_option 'sidescrolloff=0' # don't sidescroll automatically
       ::VIM::set_option 'noequalalways'   # don't auto-balance window sizes
 
-      # create match window and set it up
+      # show match window
       split_location = options[:match_window_at_top] ? 'topleft' : 'botright'
-      split_command = "silent! #{split_location} 1split GoToFile"
-      [
-        split_command,
-        'setlocal bufhidden=delete',  # delete buf when no longer displayed
-        'setlocal buftype=nofile',    # buffer is not related to any file
-        'setlocal nomodifiable',      # prevent manual edits
-        'setlocal noswapfile',        # don't create a swapfile
-        'setlocal nowrap',            # don't soft-wrap
-        'setlocal nonumber',          # don't show line numbers
-        'setlocal nolist',            # don't use List mode (visible tabs etc)
-        'setlocal foldcolumn=0',      # don't show a fold column at side
-        'setlocal foldlevel=99',      # don't fold anything
-        'setlocal nocursorline',      # don't highlight line cursor is on
-        'setlocal nospell',           # spell-checking off
-        'setlocal nobuflisted',       # don't show up in the buffer list
-        'setlocal textwidth=0'        # don't hard-wrap (break long lines)
-      ].each { |command| ::VIM::command command }
+      if @@buffer # still have buffer from last time
+        ::VIM::command "silent! #{split_location} #{@@buffer.number}sbuffer"
+        raise "Can't re-open GoToFile buffer" unless $curbuf.number == @@buffer.number
+        $curwin.height = 1
+      else        # creating match window for first time and set it up
+        split_command = "silent! #{split_location} 1split GoToFile"
+        [
+          split_command,
+          'setlocal bufhidden=unload',  # unload buf when no longer displayed
+          'setlocal buftype=nofile',    # buffer is not related to any file
+          'setlocal nomodifiable',      # prevent manual edits
+          'setlocal noswapfile',        # don't create a swapfile
+          'setlocal nowrap',            # don't soft-wrap
+          'setlocal nonumber',          # don't show line numbers
+          'setlocal nolist',            # don't use List mode (visible tabs etc)
+          'setlocal foldcolumn=0',      # don't show a fold column at side
+          'setlocal foldlevel=99',      # don't fold anything
+          'setlocal nocursorline',      # don't highlight line cursor is on
+          'setlocal nospell',           # spell-checking off
+          'setlocal nobuflisted',       # don't show up in the buffer list
+          'setlocal textwidth=0'        # don't hard-wrap (break long lines)
+        ].each { |command| ::VIM::command command }
 
-      # sanity check: make sure the buffer really was created
-      raise "Can't find buffer" unless $curbuf.name.match /GoToFile/
+        # don't show the color column
+        ::VIM::command 'setlocal colorcolumn=0' if VIM::exists?('+colorcolumn')
+
+        # don't show relative line numbers
+        ::VIM::command 'setlocal norelativenumber' if VIM::exists?('+relativenumber')
+
+        # sanity check: make sure the buffer really was created
+        raise "Can't find GoToFile buffer" unless $curbuf.name.match /GoToFile\z/
+        @@buffer = $curbuf
+      end
 
       # syntax coloring
       if VIM::has_syntax?
-        ::VIM::command "syntax match CommandTSelection \"^#{@@selection_marker}.\\+$\""
+        ::VIM::command "syntax match CommandTSelection \"^#{SELECTION_MARKER}.\\+$\""
         ::VIM::command 'syntax match CommandTNoEntries "^-- NO MATCHES --$"'
         ::VIM::command 'syntax match CommandTNoEntries "^-- NO SUCH FILE OR DIRECTORY --$"'
+        ::VIM::command 'setlocal synmaxcol=9999'
+
+        if VIM::has_conceal?
+          ::VIM::command 'setlocal conceallevel=2'
+          ::VIM::command 'setlocal concealcursor=nvic'
+          ::VIM::command 'syntax region CommandTCharMatched ' \
+                         "matchgroup=CommandTCharMatched start=+#{MH_START}+ " \
+                         "matchgroup=CommandTCharMatchedEnd end=+#{MH_END}+ concealends"
+          ::VIM::command 'highlight def CommandTCharMatched ' \
+                         'term=bold,underline cterm=bold,underline ' \
+                         'gui=bold,underline'
+        end
+
         ::VIM::command 'highlight link CommandTSelection Visual'
         ::VIM::command 'highlight link CommandTNoEntries Error'
         ::VIM::evaluate 'clearmatches()'
@@ -89,16 +121,53 @@ module CommandT
         hide_cursor
       end
 
+      # perform cleanup using an autocmd to ensure we don't get caught out
+      # by some unexpected means of dismissing or leaving the Command-T window
+      # (eg. <C-W q>, <C-W k> etc)
+      ::VIM::command 'autocmd! * <buffer>'
+      ::VIM::command 'autocmd BufLeave <buffer> silent! ruby $command_t.leave'
+      ::VIM::command 'autocmd BufUnload <buffer> silent! ruby $command_t.unload'
 
       @has_focus  = false
       @selection  = nil
       @abbrev     = ''
       @window     = $curwin
-      @buffer     = $curbuf
     end
 
     def close
-      ::VIM::command "bwipeout! #{@buffer.number}"
+      # Unlisted buffers like those provided by Netrw, NERDTree and Vim's help
+      # don't actually appear in the buffer list; if they are the only such
+      # buffers present when Command-T is invoked (for example, when invoked
+      # immediately after starting Vim with a directory argument, like `vim .`)
+      # then performing the normal clean-up will yield an "E90: Cannot unload
+      # last buffer" error. We can work around that by doing a :quit first.
+      if ::VIM::Buffer.count == 0
+        ::VIM::command 'silent quit'
+      end
+
+      # Workaround for upstream bug in Vim 7.3 on some platforms
+      #
+      # On some platforms, $curbuf.number always returns 0. One workaround is
+      # to build Vim with --disable-largefile, but as this is producing lots of
+      # support requests, implement the following fallback to the buffer name
+      # instead, at least until upstream gets fixed.
+      #
+      # For more details, see: https://wincent.com/issues/1617
+      if $curbuf.number == 0
+        # use bwipeout as bunload fails if passed the name of a hidden buffer
+        ::VIM::command 'silent! bwipeout! GoToFile'
+        @@buffer = nil
+      else
+        ::VIM::command "silent! bunload! #{@@buffer.number}"
+      end
+    end
+
+    def leave
+      close
+      unload
+    end
+
+    def unload
       restore_window_dimensions
       @settings.restore
       @prompt.dispose
@@ -118,6 +187,7 @@ module CommandT
         @selection += 1
         print_match(@selection - 1) # redraw old selection (removes marker)
         print_match(@selection)     # redraw new selection (adds marker)
+        move_cursor_to_selected_line
       else
         # (possibly) loop or scroll
       end
@@ -128,16 +198,19 @@ module CommandT
         @selection -= 1
         print_match(@selection + 1) # redraw old selection (removes marker)
         print_match(@selection)     # redraw new selection (adds marker)
+        move_cursor_to_selected_line
       else
         # (possibly) loop or scroll
       end
     end
 
     def matches= matches
+      matches = matches.reverse if @reverse_list
       if matches != @matches
-        @matches =  matches
-        @selection = 0
+        @matches = matches
+        @selection = @reverse_list ? @matches.length - 1 : 0
         print_matches
+        move_cursor_to_selected_line
       end
     end
 
@@ -192,46 +265,84 @@ module CommandT
 
   private
 
+    def move_cursor_to_selected_line
+      # on some non-GUI terminals, the cursor doesn't hide properly
+      # so we move the cursor to prevent it from blinking away in the
+      # upper-left corner in a distracting fashion
+      @window.cursor = [@selection + 1, 0]
+    end
+
     def print_error msg
       return unless VIM::Window.select(@window)
       unlock
       clear
-      @window.height = 1
-      @buffer[1] = "-- #{msg} --"
+      @window.height = @min_height > 0 ? @min_height : 1
+      @@buffer[1] = "-- #{msg} --"
       lock
     end
 
     def restore_window_dimensions
-      # sort from tallest to shortest
-      @windows.sort! { |a, b| b.height <=> a.height }
+      # sort from tallest to shortest, tie-breaking on window width
+      @windows.sort! do |a, b|
+        order = b.height <=> a.height
+        if order.zero?
+          b.width <=> a.width
+        else
+          order
+        end
+      end
 
       # starting with the tallest ensures that there are no constraints
       # preventing windows on the side of vertical splits from regaining
       # their original full size
       @windows.each do |w|
         # beware: window may be nil
-        window = ::VIM::Window[w.index]
-        window.height = w.height if window
+        if window = ::VIM::Window[w.index]
+          window.height = w.height
+          window.width  = w.width
+        end
       end
     end
 
     def match_text_for_idx idx
-      match = truncated_match @matches[idx]
+      match = truncated_match @matches[idx].to_s
       if idx == @selection
-        prefix = @@selection_marker
+        prefix = SELECTION_MARKER
         suffix = padding_for_selected_match match
       else
-        prefix = @@unselected_marker
+        if VIM::has_syntax? && VIM::has_conceal?
+          match = match_with_syntax_highlight match
+        end
+        prefix = UNSELECTED_MARKER
         suffix = ''
       end
       prefix + match + suffix
+    end
+
+    # Highlight matching characters within the matched string.
+    #
+    # Note that this is only approximate; it will highlight the first matching
+    # instances within the string, which may not actually be the instances that
+    # were used by the matching/scoring algorithm to determine the best score
+    # for the match.
+    #
+    def match_with_syntax_highlight match
+      highlight_chars = @prompt.abbrev.downcase.chars.to_a
+      match.chars.inject([]) do |output, char|
+        if char.downcase == highlight_chars.first
+          highlight_chars.shift
+          output.concat [MH_START, char, MH_END]
+        else
+          output << char
+        end
+      end.join
     end
 
     # Print just the specified match.
     def print_match idx
       return unless VIM::Window.select(@window)
       unlock
-      @buffer[idx + 1] = match_text_for_idx idx
+      @@buffer[idx + 1] = match_text_for_idx idx
       lock
     end
 
@@ -248,14 +359,15 @@ module CommandT
         @window_width = @window.width # update cached value
         max_lines = VIM::Screen.lines - 5
         max_lines = 1 if max_lines < 0
-        actual_lines = match_count > max_lines ? max_lines : match_count
+        actual_lines = match_count < @min_height ? @min_height : match_count
+        actual_lines = max_lines if actual_lines > max_lines
         @window.height = actual_lines
         (1..actual_lines).each do |line|
           idx = line - 1
-          if @buffer.count >= line
-            @buffer[line] = match_text_for_idx idx
+          if @@buffer.count >= line
+            @@buffer[line] = match_text_for_idx idx
           else
-            @buffer.append line - 1, match_text_for_idx(idx)
+            @@buffer.append line - 1, match_text_for_idx(idx)
           end
         end
         lock
@@ -266,10 +378,10 @@ module CommandT
     # highlighting extends all the way to the right edge of the window.
     def padding_for_selected_match str
       len = str.length
-      if len >= @window_width - @@marker_length
+      if len >= @window_width - MARKER_LENGTH
         ''
       else
-        ' ' * (@window_width - @@marker_length - len)
+        ' ' * (@window_width - MARKER_LENGTH - len)
       end
     end
 
@@ -277,7 +389,7 @@ module CommandT
     # window width.
     def truncated_match str
       len = str.length
-      available_width = @window_width - @@marker_length
+      available_width = @window_width - MARKER_LENGTH
       return str if len <= available_width
       left = (available_width / 2) - 1
       right = (available_width / 2) - 2 + (available_width % 2)
@@ -292,20 +404,13 @@ module CommandT
     end
 
     def get_cursor_highlight
-      # as :highlight returns nothing and only prints,
-      # must redirect its output to a variable
-      ::VIM::command 'silent redir => g:command_t_cursor_highlight'
-
-      # force 0 verbosity to ensure origin information isn't printed as well
-      ::VIM::command 'silent! 0verbose highlight Cursor'
-      ::VIM::command 'silent redir END'
-
       # there are 3 possible formats to check for, each needing to be
       # transformed in a certain way in order to reapply the highlight:
       #   Cursor xxx guifg=bg guibg=fg      -> :hi! Cursor guifg=bg guibg=fg
       #   Cursor xxx links to SomethingElse -> :hi! link Cursor SomethingElse
       #   Cursor xxx cleared                -> :hi! clear Cursor
-      highlight = ::VIM::evaluate 'g:command_t_cursor_highlight'
+      highlight = VIM::capture 'silent! 0verbose highlight Cursor'
+
       if highlight =~ /^Cursor\s+xxx\s+links to (\w+)/
         "link Cursor #{$~[1]}"
       elsif highlight =~ /^Cursor\s+xxx\s+cleared/

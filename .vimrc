@@ -104,12 +104,13 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 
-autocmd BufReadPost quickfix set cursorline
-autocmd BufReadPost psql.edit.* set filetype=sql
-autocmd FileType ruby set sw=2
+autocmd BufReadPost quickfix setlocal cursorline
+autocmd BufReadPost psql.edit.* setlocal filetype=sql
+autocmd FileType ruby setlocal sw=2
 autocmd FileType javascript iabbr $# $('#
-autocmd FileType php set expandtab
-autocmd FileType tex set tw=70
-autocmd FileType python set tw=110
+autocmd FileType javascript setlocal sw=2 expandtab
+autocmd FileType php setlocal noexpandtab
+autocmd FileType tex setlocal tw=70
+autocmd FileType python setlocal tw=110
 autocmd FileType python source ~/.vim/extraplugin/python.vim
 autocmd BufRead testcases.txt syntax match DiffAdd /Test types: .*/

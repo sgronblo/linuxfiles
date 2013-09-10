@@ -5,11 +5,8 @@ on_osx() {
 }
 
 # Source git completion manually if we are on OS X
-if [ -f /usr/local/Cellar/git/1.8.0/etc/bash_completion.d/git-completion.bash ] && on_osx ; then
-    source /usr/local/Cellar/git/1.8.0/etc/bash_completion.d/git-completion.bash
-fi
-if [ -f /usr/local/Cellar/git/1.8.0/etc/bash_completion.d/git-prompt.sh ] && on_osx ; then
-    source /usr/local/Cellar/git/1.8.0/etc/bash_completion.d/git-prompt.sh
+if [ -f /usr/local/etc/bash_completion.d/git-prompt.sh ] && on_osx ; then
+    source /usr/local/etc/bash_completion.d/git-prompt.sh
 fi
 if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ] && on_osx ; then
     source /usr/local/etc/bash_completion.d/git-completion.bash

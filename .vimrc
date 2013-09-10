@@ -70,6 +70,8 @@ noremap <Down> gj
 noremap <F1> :Rake<CR>
 nnoremap <silent> <C-h> :bprevious<CR>
 nnoremap <silent> <C-l> :bnext<CR>
+nnoremap <C-]> <C-]>zz
+nnoremap <C-t> <C-t>zz
 if has('mac')
     nnoremap <T-Left> <C-w><Left>
     nnoremap <T-Right> <C-w><Right>

@@ -46,7 +46,7 @@ set hlsearch
 set autoread
 set list
 set expandtab
-set listchars=tab:▷\ ,trail:·,extends:⋯,precedes:⋯,nbsp:␣
+set listchars=tab:·\ ,trail:·,extends:⋯,precedes:⋯,nbsp:␣
 set backspace=eol,indent,start
 
 colorscheme gardener

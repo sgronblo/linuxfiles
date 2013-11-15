@@ -7,6 +7,7 @@ call vundle#rc()
 
 runtime bundles.vim
 
+let NERDRemoveExtraSpaces = 1
 let Tlist_WinWidth = 40
 let Tlist_Sort_Type = "name"
 let g:tex_flavor = "latex"

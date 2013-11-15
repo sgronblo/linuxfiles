@@ -21,6 +21,7 @@ endif
 let loaded_matchparen = 1
 let g:pyindent_open_paren = '&sw'
 let g:syntastic_enable_signs = 1
+let g:syntastic_auto_loc_list = 1
 let g:CommandTMaxFiles = 20000
 let g:mta_filetypes = { 'html': 1, 'xml': 1, 'php': 1, }
 

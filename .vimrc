@@ -1,5 +1,4 @@
 " Settings
-
 set nocompatible
 filetype off
 

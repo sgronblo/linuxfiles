@@ -57,6 +57,19 @@ if &diff
     colorscheme molokai
 endif
 
+" Highlight the match you jump to with n and N
+function! HLNext (blinktime)
+    highlight JumpedMatch ctermfg=yellow ctermbg=magenta
+    let [bufnum, lnum, col, off] = getpos('.')
+    let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+    let target_pat = '\c\%#'.@/
+    let ring = matchadd('JumpedMatch', target_pat, 101)
+    redraw
+    exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+    call matchdelete(ring)
+    redraw
+endfunction
+
 " Show the syntastic status flag in status line
 set statusline=%<%f\ %#errormsg#%{SyntasticStatuslineFlag()}%*%{fugitive#statusline()}%h%m%r%=%-14.(%l,%c%V%)\ %P
 
@@ -74,6 +87,11 @@ nnoremap <silent> <C-h> :bprevious<CR>
 nnoremap <silent> <C-l> :bnext<CR>
 nnoremap <C-]> <C-]>zz
 nnoremap <C-t> <C-t>zz
+
+" This rewires n and N to do the highlighing...
+nnoremap <silent> n   n:call HLNext(0.4)<cr>
+nnoremap <silent> N   N:call HLNext(0.4)<cr>
+
 if has('mac')
     nnoremap <T-Left> <C-w><Left>
     nnoremap <T-Right> <C-w><Right>

@@ -25,7 +25,7 @@ hi NonText	guifg=#9FADC5		guibg=#334C75
 hi Question	guifg=#F4BB7E
 hi Search	guifg=bg     		guibg=fg
 hi SpecialKey	guifg=#BF9261
-hi StatusLine	guifg=#c0ffff		guibg=#004443	gui=none
+hi StatusLine	guifg=#004443		guibg=#A9EE5A	gui=none
 hi StatusLineNC	guifg=#004443		guibg=#067C7B	gui=bold
 hi Title	guifg=#8DB8C3
 hi Visual	guifg=black  		guibg=#C0FFC0	gui=bold

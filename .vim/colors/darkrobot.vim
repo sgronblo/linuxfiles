@@ -59,7 +59,7 @@ hi Question guifg=#60FF5C gui=none
 hi NonText  guifg=#A6A6A6 guibg=#222222
 hi Search	guibg=slategrey guifg=#FFDABB
 hi IncSearch	guifg=slategrey guibg=#FFDFB0
-hi StatusLine	guibg=#000000 guifg=#B8B8B8 gui=none
+hi StatusLine	guibg=#000000 guifg=#feffba gui=none
 hi StatusLineNC	guibg=#000000 guifg=#666666 gui=none
 hi Visual   guifg=#FFFFFF guibg=#07077B
 hi Pmenu	guifg=#5A5A5A guibg=#A8FF97

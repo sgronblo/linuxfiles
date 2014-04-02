@@ -64,7 +64,7 @@ hi PmenuSbar    guifg=NONE          guibg=#555555       gui=NONE
 hi PmenuThumb   guifg=NONE          guibg=#cccccc       gui=NONE
             \   ctermfg=gray        ctermbg=gray        cterm=NONE
 
-hi StatusLine   guifg=#000000       guibg=#c2bfa5       gui=bold    
+hi StatusLine   guifg=#000000       guibg=#66d077       gui=bold    
             \   ctermfg=black       ctermbg=white       cterm=bold
 hi StatusLineNC guifg=#444444       guibg=#c2bfa5       gui=NONE    
             \   ctermfg=darkgray    ctermbg=white       cterm=NONE

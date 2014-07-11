@@ -1,3 +1,4 @@
+Bundle 'dhruvasagar/vim-dotoo'
 Bundle 'mileszs/ack.vim'
 Bundle 'leafgarland/typescript-vim'
 Bundle 'altercation/vim-colors-solarized'

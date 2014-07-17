@@ -1,11 +1,13 @@
 " Settings
 
+set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
-
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
 runtime bundles.vim
+call vundle#end()
 
 let NERDRemoveExtraSpaces = 1
 let Tlist_WinWidth = 40
@@ -33,7 +35,6 @@ set guioptions-=T
 set incsearch
 set laststatus=2
 set linebreak
-set nocompatible
 set nojoinspaces
 set shiftwidth=4
 set smartcase

@@ -85,6 +85,7 @@ if on_osx ; then
 fi
 export PATH
 export ACKRC=.ackrc
+export JAVA_OPTS=-XX:MaxPermSize=256M
 
 if [[ -s /usr/local/bin/virtualenvwrapper.sh ]]; then
     source /usr/local/bin/virtualenvwrapper.sh

@@ -29,7 +29,12 @@ alias gsr='git svn rebase'
 alias gcv='git commit --verbose'
 alias gd='git diff --no-prefix'
 alias tpj='tp -j'
-alias findfile='find . -iname'
+function findfilei() {
+    find . -iname "*$1*" | grep -i $1
+}
+function findfile() {
+    find . -name "*$1*" | grep $1
+}
 alias clj='rlwrap java -cp /Users/sam/projects/clojure/clojure-1.4.0-master-SNAPSHOT.jar clojure.main'
 
 export GIT_PS1_SHOWDIRTYSTATE=1

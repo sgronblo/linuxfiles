@@ -1,5 +1,7 @@
 [ -z "$PS1" ] && return
 
+set -o vi
+
 on_osx() {
     [[ $(uname -s) = 'Darwin' ]]
 }

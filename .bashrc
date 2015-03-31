@@ -92,9 +92,4 @@ if [[ -s /usr/local/bin/virtualenvwrapper.sh ]]; then
     export WORKON_HOME=~/virtualenvs
 fi
 
-# source the right rvm function creation script based on rvm being installed system-wide or user-wide
-if [[ -s /usr/local/lib/rvm ]]; then
-    source /usr/local/lib/rvm
-elif [[ -s $HOME/.rvm/scripts/rvm ]]; then
-    source $HOME/.rvm/scripts/rvm
-fi
+eval "$(rbenv init -)"

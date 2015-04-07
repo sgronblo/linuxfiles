@@ -92,4 +92,5 @@ if [[ -s /usr/local/bin/virtualenvwrapper.sh ]]; then
     export WORKON_HOME=~/virtualenvs
 fi
 
-eval "$(rbenv init -)"
+export NVM_DIR="/Users/samu/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

@@ -35,7 +35,10 @@ function findfile() {
 }
 alias clj='rlwrap java -cp /Users/sam/projects/clojure/clojure-1.4.0-master-SNAPSHOT.jar clojure.main'
 
+export GIT_PS1_SHOWUPSTREAM=verbose,name
 export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
+export GIT_PS1_SHOWCOLORHINTS=1
 export CLICOLOR=1
 
 # Source OS X-specific aliases/environment variables
@@ -45,13 +48,13 @@ fi
 
 #change the prompt
 setPrompt() {
-    #local GREEN_FG="\[\033[32m\]"
-    #local DEFAULT_FG="\033[39m\]"
     local GREEN_FG="$(tput setaf 2)"
     local DEFAULT_FG="$(tput sgr0)"
     local BLUE_FG="$(tput setaf 4)"
     local YELLOW_FG="$(tput setaf 3)"
-    PS1="${BLUE_FG}\w \D{%d.%m.%Y %H:%M:%S}\n${DEFAULT_FG}[${GREEN_FG}\u${DEFAULT_FG}@${GREEN_FG}\h${DEFAULT_FG}${YELLOW_FG}\$(__git_ps1)${DEFAULT_FG}]\n> "
+    PS1_PREFIX="${BLUE_FG}\w \D{%d.%m.%Y %H:%M:%S}\n${DEFAULT_FG}[${GREEN_FG}\u${DEFAULT_FG}@${GREEN_FG}\h${DEFAULT_FG}${YELLOW_FG}"
+    PS1_SUFFIX="${DEFAULT_FG}]\n> "
+    PROMPT_COMMAND="__git_ps1 \"${PS1_PREFIX}\" \"${PS1_SUFFIX}\""
 }
 setPrompt
 

@@ -14,20 +14,18 @@ if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ] && on_osx ; then
     source /usr/local/etc/bash_completion.d/git-completion.bash
 fi
 
-#aliases
-alias fig='find . | grep'
+# Git aliases
+alias gpr='git pull --rebase'
 alias gs='git status'
 alias gsu='git submodule update'
-alias gd='git diff'
+alias gd='git diff --no-prefix'
 alias gcv='git commit --verbose'
+
+# Other aliases
+alias docker-clean='docker rm $(docker ps --filter status=exited -q); docker rmi $(docker images -q --filter dangling=true)'
 alias ll='ls -l'
 alias la='ls -a'
-alias dir='ls'
-alias gs='git status'
-alias gsd='git svn dcommit'
-alias gsr='git svn rebase'
-alias gcv='git commit --verbose'
-alias gd='git diff --no-prefix'
+alias fig='find . | grep'
 alias tpj='tp -j'
 function findfilei() {
     find . -iname "*$1*" | grep -i $1

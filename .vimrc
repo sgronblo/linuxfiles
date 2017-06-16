@@ -91,8 +91,8 @@ nnoremap <C-]> <C-]>zz
 nnoremap <C-t> <C-t>zz
 
 " This rewires n and N to do the highlighing...
-nnoremap <silent> n   n:call HLNext(0.4)<cr>
-nnoremap <silent> N   N:call HLNext(0.4)<cr>
+nnoremap <silent> n   n:call HLNext(0.2)<cr>
+nnoremap <silent> N   N:call HLNext(0.2)<cr>
 
 if has('mac')
     nnoremap <T-Left> <C-w><Left>

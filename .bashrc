@@ -59,7 +59,7 @@ setPrompt() {
 setPrompt
 
 source ~/linuxfiles/tp_command
-source ~/linuxfiles/mvn-color-function.sh
+#source ~/linuxfiles/mvn-color-function.sh
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile

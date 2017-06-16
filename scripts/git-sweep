@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+yellow=$'\e[1;33m'
+red=$'\e[1;31m'
+normal=$'\e[0m'
+
+# Filter out the line in git branch that contains an asterisk to avoid bash's command substitution treating it
+# as a glob which matches all files in the current directory
+for merged_branch in $( git branch --merged | grep -v '\*' )
+do
+    # Set default value to yes
+    do_delete=y
+    # If tty => prompt the question
+    [[ -t 0 ]] &&
+    # Store the answer in $do_delete
+    read -n 1 -p "${red}Delete${normal} already merged branch ${yellow}${merged_branch}${normal}? (Y/n) " do_delete
+    echo ""
+    # Do if 'y', 'Y' or empty
+    if [[ $do_delete =~ ^(y|Y)$ ]]
+    then
+        git branch -d $merged_branch
+    fi
+done

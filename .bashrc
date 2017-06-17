@@ -81,9 +81,6 @@ export HISTSIZE=2000
 shopt -s histappend
 #add my dir of handy scripts to path
 PATH=$PATH:~/linuxfiles/scripts:~/android-sdk-linux_x86/tools:/usr/local/share/npm/bin:~/.cabal/bin
-if on_osx ; then
-    PATH=$HOME/.nodebrew/current/bin:/Users/a13014/.cabal/bin:/usr/local/bin:/Users/a13014/Library/Haskell/bin:$PATH
-fi
 export PATH
 export ACKRC=.ackrc
 export JAVA_OPTS=-XX:MaxPermSize=256M

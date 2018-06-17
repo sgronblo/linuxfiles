@@ -1,0 +1,28 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "workbench.editor.showTabs": false,
+    "editor.wordWrap": "on",
+    "vim.useCtrlKeys": true,
+    "editor.cursorStyle": "block",
+    "window.zoomLevel": 1,
+    "editor.cursorBlinking": "blink",
+    "editor.renderWhitespace": "boundary",
+    "FSharp.logLanguageServiceRequestsOutputWindowLevel": "DEBUG",
+    "FSharp.logLanguageServiceRequests": "both",
+    "workbench.colorTheme": "Paper White",
+    "workbench.iconTheme": "vs-seti",
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "editor.minimap.enabled": false,
+    "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
+    "path-intellisense.absolutePathToWorkspace": false,
+    "search.useIgnoreFiles": true,
+    "extensions.ignoreRecommendations": false,
+    "vim.disableExtension": false,
+    "terraform.format": {
+        "enable": false,
+        "ignoreExtensionsOnSave": [
+            ".tfsmurf"
+        ],
+        "formatOnSave": true
+    }
+}

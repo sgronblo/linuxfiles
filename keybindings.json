@@ -1,0 +1,35 @@
+// Place your key bindings in this file to overwrite the defaults
+[
+    { "key": "cmd+e", "command": "workbench.action.openNextRecentlyUsedEditorInGroup" },
+    {
+        "key": "cmd+e",
+        "command": "workbench.action.quickOpenNavigateNext",
+        "when": "inQuickOpen"
+    },
+    {
+        "key": "alt+cmd+up",
+        "command": "workbench.action.navigateUp"
+    },
+    {
+        "key": "alt+cmd+down",
+        "command": "workbench.action.navigateDown"
+    },
+    {
+        "key": "alt+cmd+left",
+        "command": "workbench.action.navigateLeft"
+    },
+    {
+        "key": "alt+cmd+right",
+        "command": "workbench.action.navigateRight"
+    },
+    {
+        "key": "ctrl+alt+p",
+        "command": "editor.action.triggerParameterHints",
+        "when": "editorHasSignatureHelpProvider && editorTextFocus"
+    },
+    {
+        "key": "shift+cmd+space",
+        "command": "-editor.action.triggerParameterHints",
+        "when": "editorHasSignatureHelpProvider && editorTextFocus"
+    }
+]

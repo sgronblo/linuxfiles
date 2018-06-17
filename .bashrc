@@ -80,9 +80,11 @@ fi
 export HISTCONTROL="ignorespace:erasedups"
 export HISTSIZE=2000
 shopt -s histappend
-#add my dir of handy scripts to path
-PATH=$PATH:~/linuxfiles/scripts:~/android-sdk-linux_x86/tools:/usr/local/share/npm/bin:~/.cabal/bin
+
+PATH=$PATH:~/scripts:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:~/bin
+
 export PATH
+
 export ACKRC=.ackrc
 export JAVA_OPTS=-XX:MaxPermSize=256M
 

@@ -1,4 +1,4 @@
-Plugin 'clausreinke/typescript-tools'
+Plugin 'clausreinke/typescript-tools.vim'
 Plugin 'def-lkb/ocp-indent-vim.git'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'dhruvasagar/vim-dotoo'

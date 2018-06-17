@@ -31,6 +31,12 @@ let g:CommandTMaxFiles = 20000
 let g:mta_filetypes = { 'html': 1, 'xml': 1, 'php': 1, }
 let g:vimwiki_list = [{'path': '~/Dropbox (Personal)/vimwiki'}]
 
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
+set rtp^="/Users/samu/.opam/4.02.3/share/ocp-indent/vim"
+set rtp+=/Users/samu/.opam/4.02.3/share/ocp-index/vim
+let g:syntastic_ocaml_checkers = ['merlin']
+
 set completeopt=
 set grepprg=grep\ -nH\ $*\ /dev/null
 set guifont=Andale\ Mono\ 12

@@ -21,11 +21,15 @@ elseif executable('ack')
 endif
 let loaded_matchparen = 1
 let g:pyindent_open_paren = '&sw'
+let g:loaded_syntastic_haskell_hlint_checker = 1
 let g:syntastic_enable_signs = 1
 let g:syntastic_auto_loc_list = 1
+let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_mode_map = { 'passive_filetypes': ['html'] }
+let g:syntastic_elm_checkers = ['elm_make']
 let g:CommandTMaxFiles = 20000
 let g:mta_filetypes = { 'html': 1, 'xml': 1, 'php': 1, }
+let g:vimwiki_list = [{'path': '~/Dropbox (Personal)/vimwiki'}]
 
 set completeopt=
 set grepprg=grep\ -nH\ $*\ /dev/null

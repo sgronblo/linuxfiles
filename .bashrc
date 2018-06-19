@@ -81,7 +81,7 @@ export HISTCONTROL="ignorespace:erasedups"
 export HISTSIZE=2000
 shopt -s histappend
 
-PATH=$PATH:~/scripts:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:~/bin
+PATH=$PATH:~/scripts:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:~/bin:~/.local/bin:~/.cabal/bin
 
 export PATH
 

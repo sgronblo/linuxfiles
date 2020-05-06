@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -x
+
+SED=gsed
+NEWSUBDIR=$1
+REQUIRED_PREFIX=$2
+
+SED_COMMAND="s-\(\t\\\"*\)\($REQUIRED_PREFIX\)-\1$NEWSUBDIR/-"
+FILTER_COMMAND="git ls-files -s | \
+    $SED \"$SED_COMMAND\" | \
+    GIT_INDEX_FILE=\$GIT_INDEX_FILE.new git update-index --index-info && \
+    if [ -f \$GIT_INDEX_FILE.new ]; then mv \"\$GIT_INDEX_FILE.new\" \"\$GIT_INDEX_FILE\"; fi"
+
+GIT_PARAMS=(filter-branch -f --prune-empty --index-filter "$FILTER_COMMAND" HEAD)
+
+git "${GIT_PARAMS[@]}"

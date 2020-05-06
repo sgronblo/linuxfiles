@@ -1,0 +1,1 @@
+aws-get-credentials.sh

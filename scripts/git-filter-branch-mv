@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+export TARGET_DIR=${1:?Target directory not set, run as git filter-branch-mv TARGET_DIR}
+if [ "$2" = "force" ]; then force_option="-f"; fi
+
+git filter-branch $force_option --prune-empty --tree-filter '
+if [ ! -e $TARGET_DIR ]; then
+    mkdir -p $TARGET_DIR
+    git ls-tree --name-only $GIT_COMMIT | xargs -I files mv files $TARGET_DIR
+fi'

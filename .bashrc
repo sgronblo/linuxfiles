@@ -35,6 +35,7 @@ function findfile() {
 }
 alias clj='rlwrap java -cp /Users/sam/projects/clojure/clojure-1.4.0-master-SNAPSHOT.jar clojure.main'
 alias nvm-switch='nvm use $(jq ".engines.node" --raw-output package.json)'
+alias yw='yarn workspace'
 
 export GIT_PS1_SHOWUPSTREAM=verbose,name
 export GIT_PS1_SHOWDIRTYSTATE=1

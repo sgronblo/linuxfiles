@@ -2,11 +2,9 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.vim/plugin_repos')
 runtime bundles.vim
-call vundle#end()
+call plug#end()
 
 let NERDRemoveExtraSpaces = 1
 let Tlist_WinWidth = 40
